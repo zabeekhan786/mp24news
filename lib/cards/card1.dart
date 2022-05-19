@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:share/share.dart';
 import 'package:wordpress_app/models/article.dart';
 import 'package:wordpress_app/models/constants.dart';
 import 'package:wordpress_app/services/app_service.dart';
@@ -8,6 +9,8 @@ import 'package:wordpress_app/utils/cached_image.dart';
 import 'package:wordpress_app/utils/next_screen.dart';
 import 'package:wordpress_app/widgets/bookmark_icon.dart';
 import 'package:wordpress_app/widgets/video_icon.dart';
+
+import '../widgets/like_icon.dart';
 
 
 //small card with right sight image
@@ -25,6 +28,7 @@ class Card1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bookmarkedList = Hive.box(Constants.bookmarkTag);
+    final _screen =  MediaQuery.of(context).size;
 
     return InkWell(
         child: Container(
@@ -117,13 +121,59 @@ class Card1 extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
                     ),
-                    Spacer(),
-                    BookmarkIcon(
-                      bookmarkedList: bookmarkedList,
-                      article: article,
-                      iconSize: 18,
-                      scaffoldKey: scaffoldKey,
-                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: 5,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+
+
+                   // Spacer(),
+                    Container(
+                      margin: EdgeInsets.only(left: 30),
+                      width: _screen.width * 0.50,
+                      child: LikeIcon(
+                        bookmarkedList: bookmarkedList,
+                        article: article,
+                        iconSize: 18,
+                        scaffoldKey: scaffoldKey,
+                        iconColor: Colors.blue,
+                      ),
+                    ),
+                    VerticalDivider(width: 0.5),
+
+                    Container(
+                      width: _screen.width * 0.25,
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.share,
+                                size: 18, color: Colors.grey[900]),
+                            onPressed: () => _handleShare(article),
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          InkWell(
+                            onTap: () => _handleShare(article),
+                            child:Text(
+                              'share',
+                              style:
+                              TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+
+                            ),
+                          ),
+
+
+                        ],
+                      ),
+                    ),
+
                   ],
                 ),
               ],
@@ -131,4 +181,8 @@ class Card1 extends StatelessWidget {
         onTap: () => navigateToDetailsScreen(context, article, heroTag)
         );
   }
+}
+
+Future _handleShare(Article article) async {
+  Share.share(article.link!);
 }
