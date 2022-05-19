@@ -32,7 +32,7 @@ class Config {
   //languages
   static const List<String> languages = [
     'English',
-   // 'Spanish',
+    'Hindi',
    // 'Arabic'
   ];
 
