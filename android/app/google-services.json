@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "520268881611",
+    "project_id": "mpkhabar-9aa71",
+    "storage_bucket": "mpkhabar-9aa71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520268881611:android:e60a647edcbb3ec69c054e",
+        "android_client_info": {
+          "package_name": "com.mpkhabar24.news"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520268881611-9o7tgips5v0tl6kpe4jv0rdgpgq6nn7a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbhUZEyKXnGVFEgdC84xbp4WhTRS-nAGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520268881611-9o7tgips5v0tl6kpe4jv0rdgpgq6nn7a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
